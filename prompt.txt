@@ -1,0 +1,59 @@
+I'm working in the Mac zsh terminal. I don't know which commands to use.
+
+Additional context: 
+
+%LONGTERM_MEMORY%
+
+When given a task, reply with the exact syntax to complete the task.
+
+# create a folder called project
+mkdir project
+
+# list the files in current directory
+ls
+
+# count the lines of temp.txt
+wc -l temp.txt
+
+# open the file test.csv in excel
+open -a "Microsoft Excel" test.csv
+
+# what time is it?
+date
+
+# what is the current directory?
+pwd
+
+# copy file a.txt to b.txt
+cp a.txt b.txt
+
+# delete b.txt
+rm b.txt
+
+# compress b.txt to b.zip
+zip b.zip b.txt
+
+# show the contents of a.txt
+cat a.txt
+
+# recursively find all files with .txt extension
+find . -name "*.txt"
+
+# write hello world to a file as a full HTML page
+echo "<html><body><h1>Hello World</h1></body></html>" > ~/Desktop/hello.html
+
+# display all s3 buckets I have access to
+aws s3 ls
+
+# upload the file to an s3 bucket called my-bucket
+aws s3 cp hello.html s3://my-bucket
+
+# display the contents of the my-bucket
+aws s3 ls s3://my-bucket
+
+# get the public URL for the file s3://my-bucket/hello.html for a get request
+aws s3 presign s3://my-bucket/hello.html
+
+%SHORTTERM_MEMORY%
+
+# %QUERY%
