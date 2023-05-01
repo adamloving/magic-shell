@@ -75,6 +75,7 @@ def build_messages(query):
 
 
 def complete(messages):
+    print("Messages:")
     print(json.dumps(messages, indent=4))
 
     completion_message = (
@@ -87,6 +88,7 @@ def complete(messages):
         .get("choices", [{}])[0]
         .get("message", {})
     )
+    print("Completion message:")
     print(json.dumps(completion_message, indent=4))
 
     return completion_message
@@ -97,6 +99,7 @@ def save_longterm_memory(text):
         f.write(LONGTERM_MEMORY + text + "\n")
 
 
+# Bugbug: rotate the current conversation every 2 hours
 def save_conversation(messages):
     # overwrite the current conversation
     with open(current_convo_path, "w") as f:
@@ -110,7 +113,7 @@ if __name__ == "__main__":
     query = " ".join(sys.argv[1:])
 
     if not query:
-        print("Please provide a query")
+        print("Please provide more info. Example: help create an s3 bucket")
         sys.exit(1)
 
     if query.startswith("remember "):
@@ -148,6 +151,11 @@ if __name__ == "__main__":
 
             # run the command and capture standard output
             result = os.popen(command).read()
+
+            if len(result) > 1003:
+                # take the first 500 and the last 500 characters
+                # with a "..." in the middle
+                result = result[:500] + "..." + result[-500:]
 
             print("RESULT: " + str(result))
             input_messages.append(
