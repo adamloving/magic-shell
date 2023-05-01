@@ -75,8 +75,9 @@ def build_messages(query):
 
 
 def complete(messages):
-    print("Messages:")
-    print(json.dumps(messages, indent=4))
+    if os.getenv("MAGICSHELL_DEBUG", False):
+        print("Messages:")
+        print(json.dumps(messages, indent=4))
 
     completion_message = (
         openai.ChatCompletion.create(
@@ -88,8 +89,9 @@ def complete(messages):
         .get("choices", [{}])[0]
         .get("message", {})
     )
-    print("Completion message:")
-    print(json.dumps(completion_message, indent=4))
+    if os.getenv("MAGICSHELL_DEBUG", False):
+        print("Completion message:")
+        print(json.dumps(completion_message, indent=4))
 
     return completion_message
 
